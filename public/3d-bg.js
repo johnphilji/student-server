@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderer.setPixelRatio(window.devicePixelRatio);
 
     const shapes = [];
-    const colors = [0xE81A76, 0x00A7A5, 0xC0D72F, 0x000000, 0xFFFFFF]; // Magenta, Cyan, Lime, Black, White
+    const colors = [0xE81A76, 0x00A7A5, 0xC0D72F, 0x000000]; // Magenta, Cyan, Lime, Black
 
     // Generate 60 floating flat geometric shards
     for (let i = 0; i < 60; i++) {
