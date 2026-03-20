@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+  --magenta: #E81A76;
+  --cyan: #00A7A5;
+  --lime: #C0D72F;
+  --dark: #181b1c;
+  --black: #0c0d0e;
+  --white: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--dark);
+  color: var(--white);
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2rem 4rem;
+  z-index: 100;
+  background: transparent;
+}
+
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  margin: 0 1.5rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: color 0.3s;
+  opacity: 0.7;
+}
+
+nav a:hover, nav a.active {
+  color: var(--cyan);
+  opacity: 1;
+}
+
+/* Container */
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem 2rem 4rem;
+  z-index: 10;
+  gap: 1.5rem;
+}
+
+/* Giant Typography Style */
+h1.giant-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(4rem, 12vw, 9rem);
+  line-height: 0.85;
+  color: var(--white);
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+  letter-spacing: -2px;
+  max-width: 1200px;
+  z-index: 20;
+}
+
+/* Sub-card flat design */
+.terminal-card {
+  background: var(--white);
+  color: var(--black);
+  padding: 3rem;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 12px 12px 0px var(--black);
+  position: relative;
+  z-index: 20;
+  border: 4px solid var(--black);
+}
+
+.terminal-card h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 2rem;
+  letter-spacing: -1px;
+}
+
+/* Info Text */
+.info-text {
+  font-size: 1.1rem;
+  line-height: 2;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-text strong {
+  color: var(--magenta);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  margin-right: 15px;
+  display: inline-block;
+  min-width: 100px;
+}
+
+/* Forms */
+.cyber-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+input, select {
+  background: #f4f4f4;
+  border: 3px solid var(--black);
+  padding: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--black);
+  outline: none;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+input:focus, select:focus {
+  background: var(--white);
+  border-color: var(--cyan);
+}
+
+.cyber-btn {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  border: none;
+  padding: 1.25rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: transform 0.1s, box-shadow 0.1s, background 0.3s;
+  box-shadow: 6px 6px 0px var(--lime);
+}
+
+.cyber-btn:hover {
+  background: var(--magenta);
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px var(--lime);
+}
+
+.cyber-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px var(--lime);
+}
+
+.result {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.result.success {
+  background: rgba(0, 167, 165, 0.1);
+  color: var(--cyan);
+  border: 3px solid var(--cyan);
+}
+
+.result.error {
+  background: rgba(232, 26, 118, 0.1);
+  color: var(--magenta);
+  border: 3px solid var(--magenta);
+}
+
+@media (max-width: 768px) {
+  nav { justify-content: center; padding: 1rem; }
+  h1.giant-title { font-size: 3rem; }
+  .terminal-card { padding: 2rem; border-width: 2px; box-shadow: 8px 8px 0px var(--black); }
+}

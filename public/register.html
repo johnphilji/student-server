@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Server - Register</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="/register" class="active">Register</a>
+    <a href="/update">Update</a>
+  </nav>
+
+  <div class="container">
+    <h1 class="giant-title">INITIALIZE<br>SUBJECT</h1>
+    <div class="terminal-card">
+      <form class="cyber-form" id="register-form">
+        <div class="form-group">
+          <label for="name">Subject Identifier [NAME]</label>
+          <input type="text" id="name" name="name" required placeholder="Enter student name...">
+        </div>
+        <div class="form-group">
+           <label for="branch">Designation [BRANCH]</label>
+           <input type="text" id="branch" name="branch" required placeholder="Enter branch...">
+        </div>
+        <div class="form-group">
+           <label for="year">Cycle [YEAR]</label>
+           <input type="number" id="year" name="year" required placeholder="Enter year...">
+        </div>
+        <button type="submit" class="cyber-btn">Uplink Record</button>
+      </form>
+      <div id="result" class="result"></div>
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="/3d-bg.js"></script>
+  <script>
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'TRANSMITTING...';
+      
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          body: new URLSearchParams(new FormData(e.target)),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        });
+        
+        const text = await response.text();
+        const resDiv = document.getElementById('result');
+        if (response.status === 201) {
+           resDiv.className = 'result success';
+           resDiv.innerHTML = `[STATUS 201] ${text}`;
+           e.target.reset();
+        } else {
+           resDiv.className = 'result error';
+           resDiv.innerHTML = `ERROR: ${text}`;
+        }
+      } catch (err) {
+        document.getElementById('result').className = 'result error';
+        document.getElementById('result').innerHTML = `SYSTEM FAILURE: ${err.message}`;
+      } finally {
+        btn.textContent = 'Uplink Record';
+      }
+    });
+  </script>
+</body>
+</html>

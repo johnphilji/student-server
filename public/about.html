@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Record - About</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about" class="active">About</a>
+    <a href="/contact">Contact</a>
+    <a href="/register">Register</a>
+    <a href="/update">Update</a>
+  </nav>
+
+  <div class="container">
+    <h1 class="giant-title">IDENTITY<br>RECORD</h1>
+    <div class="terminal-card">
+      <div class="info-text" id="student-info">
+        <strong>Status:</strong> Syncing with core...
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="/3d-bg.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetch('/api/student');
+            const data = await response.json();
+            
+            document.getElementById('student-info').innerHTML = `
+                <strong>Name:</strong> ${data.name}<br>
+                <strong>Roll No:</strong> ${data.rollNo}<br>
+                <strong>Course:</strong> ${data.course}
+            `;
+        } catch (error) {
+            document.getElementById('student-info').innerHTML = `
+                <strong>Error:</strong> Failed to fetch core data.
+            `;
+        }
+    });
+  </script>
+</body>
+</html>
